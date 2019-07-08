@@ -15,3 +15,10 @@ before_script:
 
 script:
   - vendor/bin/phpunit
+  - sonar-scanner -Dsonar.projectKey=rogervila_laravel-email-failer -Dsonar.sources=. -Dsonar.exclusions='index.php, vendor/**, tests/**' -Dsonar.php.tests.reportPath=junit-logfile.xml -Dsonar.php.coverage.reportPaths=clover.xml
+
+addons:
+  sonarcloud:
+    organization: "rogervila-github"
+    token:
+      secure: "APtblcil042RnTpP4m4wt3SpjHI3q/z178w6KNVCKDO9A3oBMNpahk8/r7nI5uCn/NL1iCl0ocaNf3hPimkYr2OQH6aYwiM+HIt0c6zC/8sHp2Mh92uqK4SMhfJ0tZCPzzNqqRidP2mv0lrqsnWWvmMTyLOcYJaYWbImoZr7Nl6CojtjTkxKErqYFjp2pyxzDFUXsIAv4hdEYWNPwudgzez7ptkj33xaD5uUJEEFW+eu/TtGenV5Dy1KEnHosIn04rUA1ZIXOzTYfbYQ+LXEX60w3UIBb22WYHFcmDd9MyVmTrCIaetkPOinJI2hbhL9IHmrPEYitzeRn6oJT0bvlrM3f5IrTSFD4f/pmCtMu37cJvNOKgfqdf8ZQsSHMxdXg5SpaXWhumCi0yET2o0Bx7CVDM766A+l3LJuH98CSZgepCdIDKGZziBgUb2baXs5BS2qKzNUc8P7Kau1jrxkkkH+ZVsq00AcPfbMPLsbx02azA3XXAzRN06yA8yvy5vxBgimkzbC5awCOfRMrEq7GkUQXUX71LNgu8MEVCs1+zNdI+aRPdy4O+3hjfBUDqS9x/ZyO9v7cLz1IqXfHFRor9A/o8xTogV+zETaZTcZ/bVPmdVrOptGTe1RbCXAjnLbq8fbQzGhrb+04U5wu9OApFzhmLDLGCnvKnhR2yW4UXg="
