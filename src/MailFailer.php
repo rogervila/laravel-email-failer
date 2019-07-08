@@ -13,10 +13,21 @@ class MailFailer extends MailFake
      */
     protected $failedRecipients = [];
 
+    /**
+     * Send a new message using a view.
+     *
+     * @param  string|array  $view
+     * @param  array  $data
+     * @param  \Closure|string  $callback
+     * @return void
+     * @throws \Swift_TransportException
+     */
     public function send($view, array $data = [], $callback = null)
     {
         try {
-            array_push($this->failedRecipients, $view->to[0]['address']);
+            foreach ($view->to as $to) {
+                array_push($this->failedRecipients, $to['address']);
+            }
 
             throw new \Swift_TransportException(
                 'Expected response code 354 but got code "554", with message "554 5.5.1 Error: no valid recipients'
