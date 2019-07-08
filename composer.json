@@ -1,0 +1,35 @@
+{
+    "name": "rogervila/laravel-email-failer",
+    "description": "Helper class for testing Mail Failures",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roger Vilà",
+            "email": "rogervila@me.com"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEmailFailer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "laravel/framework": "5.8.x"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpunit/phpunit": "^7.5",
+        "orchestra/testbench": "^3"
+    }
+}
