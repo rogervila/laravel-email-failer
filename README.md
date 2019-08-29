@@ -14,7 +14,34 @@
 
 ## About
 
-Assert email failures
+Trigger email failures in order to assert what happens on your Laravel Application when an email fails to sent
+
+## Usage
+
+Once the `mailer` instance is replaced, all emails will fail. This helps to assert that your application Mail exceptions are handled correctly (ie: mark the email address as invalid)
+
+```php
+public function test_happy_path()
+{
+    MyService::doSomething();
+
+    Mail::assertSent(MyMailable::class);
+}
+
+public function test_email_failures()
+{
+    $mailer = new \LaravelEmailFailer\MailFailer;
+    $this->app->instance('mailer', $mailer);
+    
+    MyService::doSomething();
+
+    Mail::assertNotSent(MyMailable::class);
+    
+    dump(Mail::failures());
+    // Assert here what happens if the email has failed
+}
+
+```
 
 
 ## License
