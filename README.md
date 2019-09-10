@@ -24,7 +24,7 @@ Once the `mailer` instance is replaced, all emails will fail. This helps to asse
 ```php
 public function test_happy_path()
 {
-    MyService::doSomething();
+    MyService::doSomething('good');
 
     Mail::assertSent(MyMailable::class);
 }
@@ -34,7 +34,7 @@ public function test_email_failures()
     $mailer = new \LaravelEmailFailer\MailFailer;
     $this->app->instance('mailer', $mailer);
     
-    MyService::doSomething();
+    MyService::doSomething('wrong');
 
     Mail::assertNotSent(MyMailable::class);
     
