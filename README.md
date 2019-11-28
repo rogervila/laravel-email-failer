@@ -15,7 +15,7 @@
 
 ## About
 
-Trigger email failures in order to assert what happens on your Laravel Application when an email fails to sent
+Trigger email failures to assert what happens on your Laravel Application when an email fails to send
 
 ## Usage
 
