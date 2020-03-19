@@ -9,7 +9,7 @@
 [![Latest Stable Version](https://poser.pugx.org/rogervila/laravel-email-failer/v/stable)](https://packagist.org/packages/rogervila/laravel-email-failer)
 [![Total Downloads](https://poser.pugx.org/rogervila/laravel-email-failer/downloads)](https://packagist.org/packages/rogervila/laravel-email-failer)
 [![License](https://poser.pugx.org/rogervila/laravel-email-failer/license)](https://packagist.org/packages/rogervila/laravel-email-failer)
-
+[![MadeWithLaravel.com shield](https://madewithlaravel.com/storage/repo-shields/2217-shield.svg)](https://madewithlaravel.com/p/laravel-email-failer/shield-link)
 
 # Laravel Email Failer
 
