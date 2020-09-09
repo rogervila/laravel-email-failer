@@ -10,11 +10,8 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev
-
 script:
+  - composer install
   - vendor/bin/phpunit
   - sonar-scanner -Dsonar.projectKey=rogervila_laravel-email-failer -Dsonar.sources=. -Dsonar.exclusions='index.php, vendor/**, tests/**' -Dsonar.php.tests.reportPath=junit-logfile.xml -Dsonar.php.coverage.reportPaths=clover.xml
 
