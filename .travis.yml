@@ -5,6 +5,7 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - nightly
 
 cache:
   directories:
@@ -13,10 +14,4 @@ cache:
 script:
   - composer install
   - vendor/bin/phpunit
-  - sonar-scanner -Dsonar.projectKey=rogervila_laravel-email-failer -Dsonar.sources=. -Dsonar.exclusions='index.php, vendor/**, tests/**' -Dsonar.php.tests.reportPath=junit-logfile.xml -Dsonar.php.coverage.reportPaths=clover.xml
-
-addons:
-  sonarcloud:
-    organization: "rogervila-github"
-    token:
-      secure: "Pjbbhk3aoDsggVm2+LDFHLMN00V5B5987uUe+CMWEqlAK+t3xFe4Zoy60nOJxA4L1/gfrsgLfn22mW6chE6Bf/T+DhMZtzAIv3TQfIc+xNcc98aTAkrJiX2addZLAViud7OLJYrelWBGwMhe+X1YiTyvS6OQ8MNBqF8b3g59nzoeugUfcVQSWqzEhoG1Ex6rkrVOyhBj05AHZ4icfmss2SgS80wuEba87YzIYSgy9q03KJtwhIHgMCUVB3mWd68+tl+i3F2cIgtGjiej/YbP8t9aVYpX/zXq7tMvlWe2ZREpk0Q4AcilOX4AZX/aGydAFis+5fc6W+CMBpk/hOHi1+PLErQowIxyCA/j5HOX8Ge9R7RIzVi5hRwX86r6Kiactn/09QSa3UqkPakAniGGCmhv0PZ2910vUolnU2pz8cF4Stt33V1leX6zZjmCcvdlHRg5mtp/fGGZeEE/J9Z7xecCS34fP925p/W0PKT4RxK2ve1MMQ5CU3UPX7wglOIax4plMeCvOV6mGYOMdehV9HwQLtMQqGVBJg/xe63Nr73GFdBfMXxrWG89LWmaU3TywJGaSxg2DeNXDnz+N9M6RFfNWI7wmO391cGNiIsmpGhUJ5KLN27ICjtKnvCxTPVdphC+n205ULN5R+vX2IwNgrGtnXcMxC03GtizLrXBkrY="
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]]; then vendor/bin/sonar-scanner -Dsonar.login=$SONAR_LOGIN; fi
