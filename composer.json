@@ -1,6 +1,10 @@
 {
     "name": "rogervila/laravel-email-failer",
-    "description": "Helper class for testing Mail Failures",
+    "description": "Helper class for testing Laravel Mail Failures",
+    "keywords": [
+        "laravel mail failure",
+        "laravel mail error"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -28,8 +32,8 @@
         "laravel/framework": "5.8.*|^6.0|^7.0|^8.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.14",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.0",
-        "orchestra/testbench": "^3 || ^4 || ^5 || ^6"
+        "orchestra/testbench": "^3 || ^4 || ^5 || ^6",
+        "rogervila/php-sonarqube-scanner": "^1.0"
     }
 }
