@@ -13,6 +13,10 @@
 
 # Laravel Email Failer
 
+```sh
+composer require --dev rogervila/laravel-email-failer
+```
+
 ## About
 
 Trigger email failures to assert what happens on your Laravel Application when an email fails to send
@@ -24,7 +28,9 @@ Once the `mailer` instance is replaced, all emails will fail. This helps to asse
 ```php
 public function test_happy_path()
 {
-    MyService::doSomething('good');
+    Mail::fake();
+
+    MyService::sendEmail();
 
     Mail::assertSent(MyMailable::class);
 }
@@ -34,12 +40,12 @@ public function test_email_failures()
     $mailer = new \LaravelEmailFailer\MailFailer;
     $this->app->instance('mailer', $mailer);
     
-    MyService::doSomething('wrong');
+    MyService::sendEmail();
 
     Mail::assertNotSent(MyMailable::class);
     
     dump(Mail::failures());
-    // Assert here what happens if the email has failed
+    // Assert here what happens when the email has failed
 }
 
 ```
