@@ -10,6 +10,10 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - 8.0
+  - 8.1
+  - 8.2
+  - 8.3
   - nightly
 
 cache:
@@ -19,4 +23,4 @@ cache:
 script:
   - composer install
   - vendor/bin/phpunit
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]]; then vendor/bin/sonar-scanner -Dsonar.login=$SONAR_LOGIN; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "8.3" ]]; then vendor/bin/sonar-scanner -Dsonar.login=$SONAR_LOGIN; fi
