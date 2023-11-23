@@ -5,6 +5,10 @@ clone_folder: C:\projects\app
 
 environment:
     matrix:
+        - php_ver: 8.3.0
+        - php_ver: 8.2.12
+        - php_ver: 8.1.25
+        - php_ver: 8.0.30
         - php_ver: 7.4.0
         - php_ver: 7.3.12
         - php_ver: 7.2.25
