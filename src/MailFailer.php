@@ -45,9 +45,7 @@ class MailFailer extends MailFake
 
             throw new TransportException('Connection could not be established with host "1.2.3.4:1234": stream_socket_client(): Unable to connect to 1.2.3.4:1234 (Connection refused)');
         } catch (Throwable $e) {
-            throw new TransportException(
-                $e->getMessage()
-            );
+            throw new TransportException($e->getMessage());
         }
     }
 
