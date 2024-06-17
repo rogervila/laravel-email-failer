@@ -8,12 +8,6 @@ environment:
         - php_ver: 8.2.0
         - php_ver: 8.3.0
 
-cache:
-    - '%APPDATA%\Composer'
-    - '%LOCALAPPDATA%\Composer'
-    - C:\tools\php -> .appveyor.yml
-    - C:\tools\composer.phar -> .appveyor.yml
-
 init:
     - SET PATH=C:\tools\php;%PATH%
 
