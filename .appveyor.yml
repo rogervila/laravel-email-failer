@@ -20,6 +20,7 @@ install:
     - echo memory_limit=512M >> php.ini
     - echo extension_dir=ext >> php.ini
     - echo extension=php_curl.dll >> php.ini
+    - echo extension=php_fileinfo.dll >> php.ini
     - echo extension=php_openssl.dll >> php.ini
     - echo extension=php_mbstring.dll >> php.ini
     - IF NOT EXIST C:\tools\composer.phar (cd C:\tools && appveyor DownloadFile https://getcomposer.org/composer.phar)
