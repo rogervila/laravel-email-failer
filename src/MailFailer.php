@@ -2,7 +2,13 @@
 
 namespace LaravelEmailFailer;
 
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Mail\Mailable;
+use Illuminate\Mail\MailManager;
 use Illuminate\Support\Testing\Fakes\MailFake;
+use Symfony\Component\Mailer\Exception\TransportException;
+use Throwable;
 
 class MailFailer extends MailFake
 {
@@ -13,27 +19,35 @@ class MailFailer extends MailFake
      */
     protected $failedRecipients = [];
 
+    public function __construct(protected ?Application $app = null)
+    {
+        $app ??= Container::getInstance();
+        parent::__construct($app->make(MailManager::class));
+    }
+
     /**
      * Send a new message using a view.
      *
-     * @param  string|array  $view
-     * @param  array  $data
-     * @param  \Closure|string  $callback
+     * @param  Mailable|string|array  $view
+     * @param  \Closure|string|null  $callback
      * @return void
-     * @throws \Swift_TransportException
+     *
+     * @throws TransportException
      */
     public function send($view, array $data = [], $callback = null)
     {
         try {
-            foreach ($view->to as $to) {
-                array_push($this->failedRecipients, $to['address']);
+            if ($view instanceof Mailable) {
+                foreach ($view->to as $to) {
+                    array_push($this->failedRecipients, $to['address']);
+                }
             }
 
-            throw new \Swift_TransportException(
-                'Expected response code 354 but got code "554", with message "554 5.5.1 Error: no valid recipients'
+            throw new TransportException(
+                'Email "error" does not comply with addr-spec of RFC 2822.'
             );
-        } catch (\Exception $e) {
-            throw new \Swift_TransportException(
+        } catch (Throwable $e) {
+            throw new TransportException(
                 $e->getMessage()
             );
         }
