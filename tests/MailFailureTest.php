@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests;
+
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class FakeMailable extends \Illuminate\Mail\Mailable
 {
@@ -11,7 +13,7 @@ class MailFailureTest extends \Orchestra\Testbench\TestCase
 {
     public function testMailFails()
     {
-        $this->expectException(\Swift_TransportException::class);
+        $this->expectException(TransportException::class);
 
         $address = 'foo@foo.foo';
         $mailer = new \LaravelEmailFailer\MailFailer();
@@ -34,7 +36,7 @@ class MailFailureTest extends \Orchestra\Testbench\TestCase
             $mailable->subject('test')->to($address);
 
             $mailer->send($mailable);
-        } catch (\Exception $e) {
+        } catch (TransportException) {
             $this->assertTrue(in_array($address, $mailer->failures()));
         }
     }
@@ -50,7 +52,7 @@ class MailFailureTest extends \Orchestra\Testbench\TestCase
             $mailable->subject('test')->to($addresses);
 
             $mailer->send($mailable);
-        } catch (\Exception $e) {
+        } catch (TransportException) {
             $this->assertCount(0, array_diff($addresses, $mailer->failures()));
         }
     }

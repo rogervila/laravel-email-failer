@@ -3,4 +3,4 @@ vendor
 junit-logfile.xml
 clover.xml
 .scannerwork
-.php_cs.cache
+*.cache

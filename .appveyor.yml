@@ -5,16 +5,8 @@ clone_folder: C:\projects\app
 
 environment:
     matrix:
-        - php_ver: 7.4.0
-        - php_ver: 7.3.12
-        - php_ver: 7.2.25
-        - php_ver: 7.1.26
-
-cache:
-    - '%APPDATA%\Composer'
-    - '%LOCALAPPDATA%\Composer'
-    - C:\tools\php -> .appveyor.yml
-    - C:\tools\composer.phar -> .appveyor.yml
+        - php_ver: 8.2.0
+        - php_ver: 8.3.0
 
 init:
     - SET PATH=C:\tools\php;%PATH%
@@ -28,6 +20,7 @@ install:
     - echo memory_limit=512M >> php.ini
     - echo extension_dir=ext >> php.ini
     - echo extension=php_curl.dll >> php.ini
+    - echo extension=php_fileinfo.dll >> php.ini
     - echo extension=php_openssl.dll >> php.ini
     - echo extension=php_mbstring.dll >> php.ini
     - IF NOT EXIST C:\tools\composer.phar (cd C:\tools && appveyor DownloadFile https://getcomposer.org/composer.phar)
@@ -41,4 +34,5 @@ before_test:
 
 test_script:
     - cd C:\projects\app
-    - vendor\bin\phpunit
+    - vendor\bin\pint --test
+    - vendor\bin\phpunit --no-coverage

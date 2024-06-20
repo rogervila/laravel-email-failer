@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false">
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-clover" target="clover.xml"/>
-        <log type="junit" target="junit-logfile.xml"/>
-    </logging>
-    <php>
-        <env name="APP_KEY" value="a859c705fa75b94a7df4433c694310bc"/>
-        <env name="APP_ENV" value="testing"/>
-        <env name="DB_CONNECTION" value="testing"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="MAIL_DRIVER" value="array"/>
-        <env name="MAIL_MAILER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-        <env name="SESSION_DRIVER" value="array"/>
-    </php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" bootstrap="vendor/autoload.php" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage>
+    <report>
+      <clover outputFile="clover.xml"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Tests">
+      <directory suffix="Test.php">tests</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <junit outputFile="junit-logfile.xml"/>
+  </logging>
+  <php>
+    <env name="APP_KEY" value="a859c705fa75b94a7df4433c694310bc"/>
+    <env name="APP_ENV" value="testing"/>
+    <env name="DB_CONNECTION" value="testing"/>
+    <env name="BCRYPT_ROUNDS" value="4"/>
+    <env name="CACHE_DRIVER" value="array"/>
+    <env name="MAIL_DRIVER" value="array"/>
+    <env name="MAIL_MAILER" value="array"/>
+    <env name="QUEUE_CONNECTION" value="sync"/>
+    <env name="QUEUE_DRIVER" value="sync"/>
+    <env name="SESSION_DRIVER" value="array"/>
+  </php>
+  <source>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </source>
 </phpunit>
