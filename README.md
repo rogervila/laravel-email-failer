@@ -20,9 +20,17 @@ Trigger email failures to assert what happens on your Laravel Application when a
 
 ## Usage
 
-Once the `mailer` instance is replaced, all emails will fail. This helps to assert that your application Mail exceptions are handled correctly (ie: mark the email address as invalid)
+Once MailFailer instance is binded, all emails will fail. This helps to assert that your application Mail exceptions are handled correctly (ie: mark the email address as invalid)
 
 ```php
+class MyService
+{
+    public static function sendEmail()
+    {
+        \Illuminate\Support\Facades\Mail::send(...);
+    }
+}
+
 public function test_happy_path()
 {
     Mail::fake();
@@ -34,8 +42,9 @@ public function test_happy_path()
 
 public function test_email_failures()
 {
-    $mailer = new \LaravelEmailFailer\MailFailer;
-    $this->app->instance('mailer', $mailer);
+    $this->expectException(TransportException::class);
+
+    \LaravelEmailFailer\MailFailer::bind();
 
     MyService::sendEmail();
 

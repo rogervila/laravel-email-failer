@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Mail\MailManager;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Symfony\Component\Mailer\Exception\TransportException;
 use Throwable;
@@ -57,5 +58,12 @@ class MailFailer extends MailFake
     public function failures()
     {
         return $this->failedRecipients;
+    }
+
+    public static function bind(?Application $app = null): self
+    {
+        Mail::swap($instance = new self($app));
+
+        return $instance;
     }
 }
